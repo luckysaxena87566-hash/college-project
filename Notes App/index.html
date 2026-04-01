@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Notes App</h1>
+            <button id="clearAll" class="btn-danger">Clear All Notes</button>
+        </header>
+        
+        <div class="input-section">
+            <textarea id="noteInput" placeholder="Write your note here... (Supports markdown-like formatting)"></textarea>
+            <button id="addNote" class="btn-primary">Add Note</button>
+        </div>
+        
+        <div class="notes-section">
+            <div id="notesList"></div>
+            <p id="noNotes" class="no-notes">No notes yet. Add one above! 🎉</p>
+        </div>
+        
+        <footer>
+            <p>Saved in your browser's localStorage. Refresh to see persistence! 🔄</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

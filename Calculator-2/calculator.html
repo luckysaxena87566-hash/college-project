@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="calc-wrap">
+    <div class="calc">
+      <div class="display">
+        <div class="history" id="hist"></div>
+        <div class="expr" id="expr"></div>
+        <div class="main-display" id="disp">0</div>
+      </div>
+
+      <div class="mode-row">
+        <button class="mode-btn active" onclick="setMode('std')">Standard</button>
+        <button class="mode-btn" onclick="setMode('sci')">Scientific</button>
+        <button class="mode-btn" onclick="setMode('conv')">Convert</button>
+      </div>
+
+      <!-- Scientific extras -->
+      <div class="sci-panel" id="sciPanel">
+        <button class="btn fn" onclick="sciOp('sin')">sin</button>
+        <button class="btn fn" onclick="sciOp('cos')">cos</button>
+        <button class="btn fn" onclick="sciOp('tan')">tan</button>
+        <button class="btn fn" onclick="sciOp('log')">log</button>
+        <button class="btn fn" onclick="sciOp('ln')">ln</button>
+        <button class="btn fn" onclick="sciOp('sqrt')">√x</button>
+        <button class="btn fn" onclick="sciOp('sq')">x²</button>
+        <button class="btn fn" onclick="sciOp('inv')">1/x</button>
+        <button class="btn fn" onclick="appendInput('π')">π</button>
+        <button class="btn fn" onclick="appendInput('e')">e</button>
+        <button class="btn fn" onclick="sciOp('fact')">+/−</button>
+        <button class="btn fn" onclick="sciOp('abs')">|x|</button>
+      </div>
+
+      <!-- Standard buttons -->
+      <div class="buttons" id="stdButtons">
+        <button class="btn clr" onclick="clearAll()">AC</button>
+        <button class="btn fn"  onclick="toggleSign()">⌫</button>
+        <button class="btn fn"  onclick="percent()">%</button>
+        <button class="btn op"  onclick="appendOp('/')">÷</button>
+
+        <button class="btn" onclick="appendInput('7')">7</button>
+        <button class="btn" onclick="appendInput('8')">8</button>
+        <button class="btn" onclick="appendInput('9')">9</button>
+        <button class="btn op" onclick="appendOp('*')">×</button>
+
+        <button class="btn" onclick="appendInput('4')">4</button>
+        <button class="btn" onclick="appendInput('5')">5</button>
+        <button class="btn" onclick="appendInput('6')">6</button>
+        <button class="btn op" onclick="appendOp('-')">−</button>
+
+        <button class="btn" onclick="appendInput('1')">1</button>
+        <button class="btn" onclick="appendInput('2')">2</button>
+        <button class="btn" onclick="appendInput('3')">3</button>
+        <button class="btn op" onclick="appendOp('+')">+</button>
+
+        <button class="btn wide" onclick="appendInput('0')">0</button>
+        <button class="btn" onclick="appendDot()">.</button>
+        <button class="btn eq" onclick="calculate()">=</button>
+      </div>
+
+      <!-- Unit converter -->
+      <div class="conv-panel" id="convPanel">
+        <select id="convType" onchange="populateConv()">
+          <option value="length">Length</option>
+          <option value="weight">Weight</option>
+          <option value="temp">Temperature</option>
+          <option value="area">Area</option>
+          <option value="speed">Speed</option>
+        </select>
+        <div class="conv-row">
+          <input type="number" id="convIn" value="1" oninput="updateConv()" />
+          <select id="convFrom" onchange="updateConv()"></select>
+        </div>
+        <div class="conv-row center">
+          <button class="btn fn swap-btn" onclick="swapConv()">⇅</button>
+        </div>
+        <div class="conv-row">
+          <input type="number" id="convOut" readonly />
+          <select id="convTo" onchange="updateConv()"></select>
+        </div>
+        <div class="conv-result" id="convResultStr"></div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

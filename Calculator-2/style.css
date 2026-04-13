@@ -1,0 +1,354 @@
+/* ============================================================
+   Calculator — style.css
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- wrapper ---- */
+.calc-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+/* ---- calculator body ---- */
+.calc {
+  width: 340px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ---- display ---- */
+.display {
+  background: #1c1c2e;
+  padding: 1.5rem 1.25rem 1rem;
+  border-bottom: 1px solid #2a2a3e;
+}
+
+.history {
+  font-size: 13px;
+  color: #6b6b8a;
+  min-height: 18px;
+  text-align: right;
+  margin-bottom: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.expr {
+  font-size: 14px;
+  color: #9999bb;
+  min-height: 20px;
+  text-align: right;
+  margin-bottom: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.main-display {
+  font-size: 44px;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: right;
+  min-height: 56px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+/* ---- mode tab row ---- */
+.mode-row {
+  display: flex;
+  gap: 6px;
+  padding: 10px 12px 0;
+  background: #fff;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+  color: #666;
+  transition: all 0.15s;
+}
+
+.mode-btn.active {
+  background: #e8f0fe;
+  color: #1a56db;
+  border-color: #a6c0f7;
+}
+
+.mode-btn:hover:not(.active) {
+  background: #f5f5f5;
+}
+
+/* ---- scientific panel ---- */
+.sci-panel {
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 8px 12px 0;
+  background: #fff;
+}
+
+.sci-panel.show {
+  display: grid;
+}
+
+/* ---- standard button grid ---- */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 10px 12px 16px;
+  background: #fff;
+}
+
+/* ---- base button ---- */
+.btn {
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  height: 60px;
+  background: #fafafa;
+  color: #1c1c2e;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.btn:hover {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+.btn:active {
+  transform: scale(0.94);
+  background: #e4e4e4;
+}
+
+/* operator buttons */
+.btn.op {
+  background: #eef3ff;
+  color: #1a56db;
+  border-color: #c3d5fb;
+  font-size: 20px;
+}
+
+.btn.op:hover {
+  background: #dde8ff;
+}
+
+/* function/utility buttons */
+.btn.fn {
+  font-size: 14px;
+  color: #555;
+  background: #f5f5f5;
+}
+
+.btn.fn:hover {
+  color: #1c1c2e;
+  background: #ebebeb;
+}
+
+/* equals button */
+.btn.eq {
+  background: #1a56db;
+  color: #fff;
+  border-color: #1a56db;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.btn.eq:hover {
+  background: #1648c0;
+}
+
+/* clear button */
+.btn.clr {
+  color: #e53e3e;
+  font-weight: 500;
+}
+
+/* wide 0 button */
+.btn.wide {
+  grid-column: span 2;
+}
+
+/* swap button in converter */
+.swap-btn {
+  width: 44px !important;
+  height: 44px !important;
+  font-size: 18px !important;
+  border-radius: 50% !important;
+}
+
+/* ---- converter panel ---- */
+.conv-panel {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 12px 16px;
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+
+.conv-panel.show {
+  display: flex;
+}
+
+.conv-panel select,
+.conv-panel input {
+  height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  color: #1c1c2e;
+  outline: none;
+  transition: border 0.15s;
+}
+
+.conv-panel select:focus,
+.conv-panel input:focus {
+  border-color: #1a56db;
+}
+
+.conv-panel > select {
+  width: 100%;
+}
+
+.conv-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.conv-row input {
+  flex: 1;
+}
+
+.conv-row.center {
+  justify-content: center;
+}
+
+.conv-result {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a56db;
+  text-align: center;
+  padding: 4px 0;
+}
+
+/* ============================================================
+   Dark mode overrides
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #111;
+  }
+
+  .calc {
+    background: #1e1e2e;
+    border-color: #333;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .mode-row,
+  .sci-panel,
+  .buttons,
+  .conv-panel {
+    background: #1e1e2e;
+  }
+
+  .mode-btn {
+    border-color: #333;
+    color: #aaa;
+  }
+
+  .mode-btn.active {
+    background: #1e3a6e;
+    color: #7aadff;
+    border-color: #2f5db0;
+  }
+
+  .mode-btn:hover:not(.active) {
+    background: #2a2a3e;
+  }
+
+  .btn {
+    background: #252538;
+    color: #eee;
+    border-color: #333;
+  }
+
+  .btn:hover {
+    background: #2e2e48;
+  }
+
+  .btn:active {
+    background: #3a3a58;
+  }
+
+  .btn.op {
+    background: #1e3566;
+    color: #7aadff;
+    border-color: #2a4a8e;
+  }
+
+  .btn.fn {
+    background: #2a2a3e;
+    color: #aaa;
+  }
+
+  .btn.clr {
+    color: #fc8181;
+  }
+
+  .btn.eq {
+    background: #1a56db;
+    border-color: #1a56db;
+  }
+
+  .conv-panel {
+    border-top-color: #333;
+  }
+
+  .conv-panel select,
+  .conv-panel input {
+    background: #252538;
+    border-color: #333;
+    color: #eee;
+  }
+}

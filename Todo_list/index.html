@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todo App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app" id="app">
+  <div class="header">
+    <h1>My tasks</h1>
+    <div class="header-right">
+      <button class="icon-btn" id="darkToggle" title="Toggle dark mode">☀</button>
+    </div>
+  </div>
+
+  <div class="add-card">
+    <div class="add-row">
+      <input type="text" id="taskInput" placeholder="Add a new task…" maxlength="200" />
+      <button onclick="addTask()">+ Add</button>
+    </div>
+    <div class="meta-row">
+      <select id="prioritySelect">
+        <option value="medium">Medium priority</option>
+        <option value="high">High priority</option>
+        <option value="low">Low priority</option>
+      </select>
+      <input type="date" id="dueDateInput" />
+      <select id="catSelect" style="display:none"></select>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="filters">
+      <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+      <button class="filter-btn" onclick="setFilter('pending',this)">Pending</button>
+      <button class="filter-btn" onclick="setFilter('done',this)">Completed</button>
+    </div>
+    <span class="task-count" id="taskCount"></span>
+  </div>
+
+  <div class="task-list" id="taskList"></div>
+  <div class="empty" id="emptyMsg" style="display:none">No tasks here. Add one above!</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

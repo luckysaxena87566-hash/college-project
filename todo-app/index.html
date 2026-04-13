@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Taskly — Your Personal Todo App</title>
+
+  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       APP WRAPPER
+  ============================================================ -->
+  <div class="app-wrapper">
+
+    <!-- ── SIDEBAR ─────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">✦</span>
+        <span class="brand-name">Taskly</span>
+      </div>
+
+      <!-- Dark-mode toggle -->
+      <button class="theme-btn" id="themeToggle" title="Toggle dark mode">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-label" id="themeLabel">Dark Mode</span>
+      </button>
+
+      <!-- Filter navigation -->
+      <nav class="filter-nav">
+        <p class="nav-section-label">Views</p>
+        <button class="filter-btn active" data-filter="all">
+          <span class="filter-icon">📋</span> All Tasks
+        </button>
+        <button class="filter-btn" data-filter="pending">
+          <span class="filter-icon">⏳</span> Pending
+        </button>
+        <button class="filter-btn" data-filter="completed">
+          <span class="filter-icon">✅</span> Completed
+        </button>
+      </nav>
+
+      <!-- Stats block -->
+      <div class="stats-block">
+        <p class="nav-section-label">Stats</p>
+        <div class="stat-row">
+          <span>Total</span><strong id="statTotal">0</strong>
+        </div>
+        <div class="stat-row">
+          <span>Pending</span><strong id="statPending">0</strong>
+        </div>
+        <div class="stat-row">
+          <span>Done</span><strong id="statDone">0</strong>
+        </div>
+        <!-- Progress bar -->
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <p class="progress-label" id="progressLabel">0% complete</p>
+      </div>
+    </aside>
+
+    <!-- ── MAIN CONTENT ───────────────────────────────────── -->
+    <main class="main-content">
+
+      <!-- Header -->
+      <header class="main-header">
+        <div>
+          <h1 class="main-title">My Tasks</h1>
+          <p class="main-subtitle" id="dateDisplay"></p>
+        </div>
+        <!-- Mobile theme toggle -->
+        <button class="theme-btn-mobile" id="themeToggleMobile" title="Toggle theme">🌙</button>
+      </header>
+
+      <!-- ── ADD TASK FORM ─────────────────────────────────── -->
+      <div class="add-task-card">
+        <h2 class="card-title">Add New Task</h2>
+
+        <div class="form-grid">
+          <!-- Task name -->
+          <div class="form-group full-width">
+            <label class="form-label" for="taskInput">Task Name *</label>
+            <input
+              type="text"
+              id="taskInput"
+              class="form-input"
+              placeholder="What do you need to do?"
+              maxlength="120"
+            />
+          </div>
+
+          <!-- Due date -->
+          <div class="form-group">
+            <label class="form-label" for="dueDateInput">Due Date</label>
+            <input type="date" id="dueDateInput" class="form-input" />
+          </div>
+
+          <!-- Priority -->
+          <div class="form-group">
+            <label class="form-label" for="priorityInput">Priority</label>
+            <select id="priorityInput" class="form-input form-select">
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <button class="add-btn" id="addTaskBtn">
+          <span class="add-btn-icon">+</span> Add Task
+        </button>
+      </div>
+
+      <!-- ── TASK LIST ──────────────────────────────────────── -->
+      <section class="task-section">
+        <div class="task-list-header">
+          <h2 class="card-title" id="listHeading">All Tasks</h2>
+          <!-- Bulk clear completed -->
+          <button class="clear-btn" id="clearCompletedBtn">Clear Completed</button>
+        </div>
+
+        <!-- The list renders here -->
+        <ul class="task-list" id="taskList"></ul>
+
+        <!-- Empty state illustration -->
+        <div class="empty-state" id="emptyState">
+          <div class="empty-illustration">✦</div>
+          <p class="empty-title">No tasks here!</p>
+          <p class="empty-sub">Add something above to get started.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── EDIT MODAL ──────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Edit task">
+      <h3 class="modal-title">Edit Task</h3>
+
+      <div class="form-group">
+        <label class="form-label" for="editTaskInput">Task Name *</label>
+        <input type="text" id="editTaskInput" class="form-input" maxlength="120" />
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="editDueDateInput">Due Date</label>
+          <input type="date" id="editDueDateInput" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="editPriorityInput">Priority</label>
+          <select id="editPriorityInput" class="form-input form-select">
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-cancel-btn" id="modalCancelBtn">Cancel</button>
+        <button class="modal-save-btn" id="modalSaveBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Script -->
+  <script src="app.js"></script>
+</body>
+</html>

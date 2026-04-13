@@ -1,0 +1,45 @@
+/* ============================================================
+   reset.css — Minimal CSS reset for consistent cross-browser look
+   ============================================================ */
+
+/* Box-sizing: border-box makes width/padding math easier */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Make images responsive by default */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for form elements (browsers don't do this by default) */
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Remove default button appearance */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Smooth scrolling everywhere */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove textarea resize handle */
+textarea {
+  resize: vertical;
+}

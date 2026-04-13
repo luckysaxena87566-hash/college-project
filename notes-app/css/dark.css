@@ -1,0 +1,42 @@
+/* ============================================================
+   dark.css — Dark mode overrides
+   Applied when <body> has the class "dark-mode"
+   ============================================================ */
+
+body.dark-mode {
+  /* Override all CSS variables for dark theme */
+  --color-bg:          #111113;
+  --color-surface:     #1e1e22;
+  --color-surface-2:   #2a2a30;
+  --color-border:      rgba(255,255,255,0.08);
+  --color-border-2:    rgba(255,255,255,0.14);
+  --color-text:        #f0f0f2;
+  --color-text-2:      #a0a0b0;
+  --color-text-3:      #60607a;
+  --color-accent:      #7c86d8;
+  --color-accent-2:    #9ba4e8;
+  --color-accent-bg:   rgba(124, 134, 216, 0.15);
+  --color-danger:      #f88;
+  --color-danger-bg:   rgba(255, 100, 100, 0.12);
+  --color-pin:         #f6c90e;
+
+  /* Soften note background colours slightly for dark mode */
+  --note-white:  #2a2a30;
+  --note-yellow: #2e2a12;
+  --note-blue:   #121d2e;
+  --note-green:  #122214;
+  --note-pink:   #2e1220;
+  --note-purple: #1e1428;
+  --note-orange: #2e1e10;
+
+  /* Slightly heavier shadows for dark mode */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.35);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.45);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+/* Make the colour swatch "white" option visible in dark mode */
+body.dark-mode .color-swatch[data-color="white"] {
+  background: #444;
+  border-color: rgba(255,255,255,0.2);
+}
